@@ -12,7 +12,7 @@ captDur = time() + cfg.caption_duration
 # Init socket
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # Binding
-s.bind((cfg.ipAddress, cfg.port))
+s.bind((ipAddress, port))
 
 # Date stamps
 td = str(date.today())
