@@ -41,7 +41,7 @@ def startCapture(mode):
                 print(firstFlow)
             else:
                 offset = flow * cfg.templByteSize
-                subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset, 74 + offset])
+                subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset:74 + offset])
                 print(subseqFlow)
 
 if __name__ == '__main__':
