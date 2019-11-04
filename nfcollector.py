@@ -3,6 +3,12 @@ from datetime import date
 from time import time
 import config as cfg
 
+runMode = cfg.mode
+ipAddress = cfg.ip_address
+port = cfg.port
+templSize = cfg.template_size_in_bytes
+captDur = time() + cfg.caption_duration
+
 # Init socket
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # Binding
@@ -10,9 +16,6 @@ s.bind((cfg.ipAddress, cfg.port))
 
 # Date stamps
 td = str(date.today())
-
-# Default collector capture duration 5 min
-captDur = time() + cfg.captDur
 
 def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
@@ -40,10 +43,10 @@ def startCapture(mode):
                 firstFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24:74])
                 print(firstFlow)
             else:
-                offset = flow * cfg.templByteSize
+                offset = flow * templSize
                 subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset:74 + offset])
                 print(subseqFlow)
 
 if __name__ == '__main__':
-    startCapture(cfg.mode)
+    startCapture(runMode)
     s.close()
