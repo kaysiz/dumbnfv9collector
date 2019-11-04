@@ -1,10 +1,10 @@
-# Define IP address on which accept NetFlow v9
+# LIsten IP address.
 ipAddress = '172.16.93.5'
-# Define UDP port
+# Listen port (UDP).
 port = 2055
-# Template size in bytes sended by exporter
+# Template size in bytes. Template size configured on exporter.
 templByteSize = 50
-# Collector mode may will be `raw` or `unpack`
+# Set collector mode `raw` or `unpack`
 mode = 'unpack'
 # Capture duration in seconds
 captDur = 300
