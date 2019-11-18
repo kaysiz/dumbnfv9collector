@@ -5,7 +5,7 @@ import config as cfg
 from elasticsearch import Elasticsearch
 
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
-es.indices.create(index='NetflowV9')
+es.indices.create(index='netflow-v9')
 
 runMode = cfg.mode
 ipAddress = cfg.ip_address
