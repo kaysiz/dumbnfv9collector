@@ -94,7 +94,7 @@ es_index_settings = {
 }
 
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
-es.indices.create(index='netflow-v9', ignore=400, body=es_settings)
+es.indices.create(index='netflow-v9', ignore=400, body=es_index_settings)
 
 runMode = cfg.mode
 ipAddress = cfg.ip_address
