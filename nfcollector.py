@@ -96,16 +96,15 @@ es_index_settings = {
 created = False
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
-
-try : 
-    if not es.indices.exists('netflow-v9'):
-        es.indices.create(index='netflow-v9', ignore=400, body=es_index_settings)
+try:
+    if not es.indicies.exists('netflow-v9'):
+        es.indicies.create(index='netflow-v9', ignore=400, body=es_index_settings)
         print('Index created')
         created = True
-    except Exception as ex:
-        print(str(ex))
-    finally:
-        return created
+except Exception as ex:
+    print(str(ex))
+finally:
+    return created
 
 """ runMode = cfg.mode
 ipAddress = cfg.ip_address
