@@ -4,7 +4,14 @@ from time import time
 import config as cfg
 from elasticsearch import Elasticsearch
 
-es_index_settings = {
+
+
+
+es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+
+def createIndex(es_object, indexName='netflow-v9'):
+    created = False
+    es_index_settings = {
     "settings" : {
         "number_of_shards" : 1,
         "number_of_replicas" : 0
@@ -87,15 +94,11 @@ es_index_settings = {
                 },
                 "sourceAS" : {
                     "type" : "integer"
+                    }
                 }
             }
         }
     }
-}
-
-created = False
-es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
-
 try:
     if not es.indicies.exists('netflow-v9'):
         es.indicies.create(index='netflow-v9', ignore=400, body=es_index_settings)
@@ -105,6 +108,7 @@ except Exception as ex:
     print(str(ex))
 finally:
     return created
+
 
 """ runMode = cfg.mode
 ipAddress = cfg.ip_address
