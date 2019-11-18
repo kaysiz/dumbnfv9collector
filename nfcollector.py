@@ -2,6 +2,10 @@ import os, socket, struct, sys
 from datetime import date
 from time import time
 import config as cfg
+from elasticsearch import Elasticsearch
+
+es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+es.indices.create(index='NetflowV9')
 
 runMode = cfg.mode
 ipAddress = cfg.ip_address
@@ -38,7 +42,8 @@ def startCapture(mode):
     while mode == 'unpack' and time() < captDur:
         data = s.recv(1518)
         nfHeader = struct.unpack('!HHLLLL', data[0:20])
-        print(nfHeader)
+        #print(nfHeader)
+
         for flow in range(0, nfHeader[1]):
             if flow == 0:
                 firstFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24:74])
