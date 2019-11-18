@@ -101,10 +101,10 @@ try:
         es.indicies.create(index='netflow-v9', ignore=400, body=es_index_settings)
         print('Index created')
         created = True
-except Exception as ex:
-    print(str(ex))
-finally:
-    return created
+    except Exception as ex:
+        print(str(ex))
+    finally:
+        return created
 
 """ runMode = cfg.mode
 ipAddress = cfg.ip_address
