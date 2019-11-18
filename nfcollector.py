@@ -4,8 +4,97 @@ from time import time
 import config as cfg
 from elasticsearch import Elasticsearch
 
+es_index_settings = {
+    "settings" : {
+        "number_of_shards" : 1,
+        "number_of_replicas" : 0
+    },
+    "mappings" : {
+        "flows" : {
+            "dynamic" : "strict",
+            "properties" : {
+                "version": {
+                    "type" : "integer"
+                },
+                "count" : {
+                    "type" : "integer"
+                },
+                "sysUpTime" : {
+                    "type" : "integer"
+                },
+                "unixSec" : {
+                    "type" : "integer"
+                },
+                "sequenceNumber" {
+                    "type" : "integer"
+                },
+                "sourceId" : {
+                    "type" : "integer"
+                },
+                "timeStampFirst" : {
+                    "type" : "integer"
+                },
+                "timeStampLast" : {
+                    "type" : "integer"
+                },
+                "counterBytes" : {
+                    "type" : "integer"
+                },
+                "counterPackets" : {
+                    "type" : "integer"
+                },
+                "interfaceInput" : {
+                    "type" : "integer"
+                },
+                "interfaceOutput" : {
+                    "type" : "integer"    
+                },
+                "ipv4SrcAddr" : {
+                    "type" : "integer"
+                },
+                "ipv4DstAddr" : {
+                    "type" : "integer"
+                },
+                "ipProtocol" : {
+                    "type" : "integer"
+                },
+                "ipTos" : {
+                    "type" : "integer"
+                },
+                "transportSrcPort" : {
+                    "type" : "integer"
+                },
+                "transportDstPort" : {
+                    "type" : "integer"
+                },
+                "flowSampler" : {
+                    "type" : "integer"
+                },
+                "nextHopIpv4Addr" : {
+                    "type" : "integer"
+                },
+                "ipv4DstMask" : {
+                    "type" : "integer"
+                },
+                "ipv4SrcMask" : {
+                    "type" : "integer"
+                },
+                "tcpFlag" : {
+                    "type" : "integer"
+                },
+                "destinationAS" : {
+                    "type" : "integer"
+                },
+                "sourceAS" : {
+                    "type" : "integer"
+                }
+            }
+        }
+    }
+}
+
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
-es.indices.create(index='netflow-v9')
+es.indices.create(index='netflow-v9', ignore=400, body=es_settings)
 
 runMode = cfg.mode
 ipAddress = cfg.ip_address
