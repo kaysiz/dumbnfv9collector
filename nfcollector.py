@@ -25,7 +25,7 @@ es_index_settings = {
                 "unixSec" : {
                     "type" : "integer"
                 },
-                "sequenceNumber" {
+                "sequenceNumber" : {
                     "type" : "integer"
                 },
                 "sourceId" : {
