@@ -2,7 +2,7 @@ import os, socket, struct, sys
 from datetime import date
 from time import time
 import config as cfg
-from es import createIndex, _es
+from es import createIndex, createFlow, _es
 
 
 
@@ -91,10 +91,10 @@ setBody = {
 }
 
 
-if __name__ == "__main__":
-    createIndex(_es, "netflow-v9", setBody)
+# if __name__ == "__main__":
+#     createIndex(_es, "netflow-v9", setBody)
 
-""" def startCapture(mode):
+def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
         os.mkdir('dumps')
 
@@ -120,12 +120,14 @@ if __name__ == "__main__":
         for flow in range(0, nfHeader[1]):
             if flow == 0:
                 firstFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24:74])
-                print(firstFlow)
+                #print(firstFlow)
+                createFlow(_es, firstFlow)
             else:
                 offset = flow * templSize
                 subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset:74 + offset])
-                print(subseqFlow)
- """
-#if __name__ == '__main__':
-    #startCapture(runMode)
-    #s.close()
+                createFlow(_es, subseqFlow)
+                #print(subseqFlow)
+
+if __name__ == '__main__':
+    startCapture(runMode)
+    s.close()

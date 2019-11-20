@@ -24,5 +24,9 @@ def createIndex(esObject, indexName, indexBody):
     finally:
         return created
 
+def createFlow(esObject, indexName, flow):
+    esObject.index(index=indexName, body=flow)
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.ERROR)
