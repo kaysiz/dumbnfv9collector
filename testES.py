@@ -2,7 +2,6 @@ from elasticsearch import Elasticsearch
 import logging
 
 def connectES():
-    _es = None
     _es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
     if _es.ping():
         print('Ping ok')
@@ -39,5 +38,4 @@ def createIndex(esObject, esIndexName='recipes'):
 if __name__ == "__main__":
     logging.basicConfig(level=logging.ERROR)
     es = connectES()
-    es
-    #createIndex(es)
+    createIndex(es)
