@@ -93,7 +93,8 @@ settings = {
     }
 }
 
-createIndex(connectES(), 'netflow-v9', settings)
+if __name__ == "__main__":
+    createIndex(connectES(), 'netflow-v9', settings)
 
 """ def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
