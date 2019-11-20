@@ -1,6 +1,7 @@
 from elasticsearch import Elasticsearch
 import logging
 
+_es = Elasticsearch([{"host": "localhost", "port": 9200}])
 
 def connectES():
     _es = None

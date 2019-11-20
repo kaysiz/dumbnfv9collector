@@ -2,7 +2,7 @@ import os, socket, struct, sys
 from datetime import date
 from time import time
 import config as cfg
-from es import createIndex, connectES
+from es import createIndex, _es
 
 
 
@@ -94,7 +94,7 @@ settings = {
 }
 
 if __name__ == "__main__":
-    createIndex(connectES(), "netflow-v9", settings)
+    createIndex(_es, "netflow-v9", settings)
 
 """ def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
