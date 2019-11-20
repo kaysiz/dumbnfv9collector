@@ -28,66 +28,63 @@ setBody = {
         "number_of_replicas": 0
     },
     "mappings": {
-        "flows": {
-            "dynamic": "strict",
-            "properties": {
-                "sysUptimeFirst": {
-                    "type": "integer"
-                },
-                "sysUptimeLast": {
-                    "type": "integer"
-                },
-                "counterBytes": {
-                    "type": "integer"
-                },
-                "counterPackets": {
-                    "type": "integer"
-                },
-                "inputInterface": {
-                    "type": "integer"
-                },
-                "outputInterface": {
-                    "type": "integer"
-                },
-                "ipv4SrcAddr": {
-                    "type": "integer"
-                },
-                "ipv4DstAddr": {
-                    "type": "integer"
-                },
-                "ipProtocol": {
-                    "type": "integer"
-                },
-                "ipTos": {
-                    "type": "integer"
-                },
-                "transportSrcPort": {
-                    "type": "integer"
-                },
-                "transportDstPort": {
-                    "type": "integer"
-                },
-                "flowSampler": {
-                    "type": "integer"
-                },
-                "ipv4NextHop": {
-                    "type": "integer"
-                },
-                "ipv4DstMask": {
-                    "type": "integer"
-                },
-                "ipv4SrcMask": {
-                    "type": "integer"
-                },
-                "tcpFlags": {
-                    "type": "integer"
-                },
-                "destinationAS": {
-                    "type": "integer"
-                },
-                "sourceAS": {
-                    "type": "integer"
-                }
+        "properties": {
+            "sysUptimeFirst": {
+                "type": "integer"
+            },
+            "sysUptimeLast": {
+                "type": "integer"
+            },
+            "counterBytes": {
+                "type": "integer"
+            },
+            "counterPackets": {
+                "type": "integer"
+            },
+            "inputInterface": {
+                "type": "integer"
+            },
+            "outputInterface": {
+                "type": "integer"
+            },
+            "ipv4SrcAddr": {
+                "type": "integer"
+            },
+            "ipv4DstAddr": {
+                "type": "integer"
+            },
+            "ipProtocol": {
+                "type": "integer"
+            },
+            "ipTos": {
+                "type": "integer"
+            },
+            "transportSrcPort": {
+                "type": "integer"
+            },
+            "transportDstPort": {
+                "type": "integer"
+            },
+            "flowSampler": {
+                "type": "integer"
+            },
+            "ipv4NextHop": {
+                "type": "integer"
+            },
+            "ipv4DstMask": {
+                "type": "integer"
+            },
+            "ipv4SrcMask": {
+                "type": "integer"
+            },
+            "tcpFlags": {
+                "type": "integer"
+            },
+            "destinationAS": {
+                "type": "integer"
+            },
+            "sourceAS": {
+                "type": "integer"
             }
         }
     }
