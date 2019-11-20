@@ -10,7 +10,7 @@ def connectES():
         print('Ping error')
     return _es
 
-def createIndex(esObject, esIndexName='test'):
+def createIndex(esObject, esIndexName='recipes'):
     created = False
     settings = {
         "settings": {
