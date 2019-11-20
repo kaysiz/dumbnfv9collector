@@ -16,7 +16,7 @@ def createIndex(esObject, indexName, indexBody):
     created = False
     try:
         if not esObject.indices.exists(indexName):
-            esObject.indices.create(index=indexName, body=indexBody, ignore=400)
+            esObject.indices.create(index=indexName, body=indexBody)
             print('Index created')
         created = True
     except Exception as ex:
