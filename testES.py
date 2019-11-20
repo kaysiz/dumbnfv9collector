@@ -1,4 +1,4 @@
-from elasticsearch import elasticsearch
+from elasticsearch import Elasticsearch
 import logging
 
 def connectES():
