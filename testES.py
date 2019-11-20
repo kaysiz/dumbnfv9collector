@@ -10,11 +10,6 @@ def connectES():
         print('Ping error')
     return _es
 
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.ERROR)
-    connectES()
-
-
 def createIndex(esObject, esIndexName='test'):
     created = False
     settings = {
@@ -48,3 +43,8 @@ def createIndex(esObject, esIndexName='test'):
         print(str(ex))
     finally:
         return created
+
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.ERROR)
+    createIndex(connectES())
