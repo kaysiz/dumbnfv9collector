@@ -42,4 +42,4 @@ settings = {
 
 
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
-es.indices.create(index='recipes', ignore=400, body=settings)
+es.indices.create(index='recipes', body=settings)
