@@ -121,11 +121,19 @@ def startCapture(mode):
             if flow == 0:
                 firstFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24:74])
                 #print(firstFlow)
-                createFlow(_es, 'netflow-v9', firstFlow)
+                createFlow(_es, 'netflow-v9', {"sysUptimeFirst": firstFlow[0], "sysUptimeLast": firstFlow[1], "counterBytes": firstFlow[2], \
+                    "counterPackets": firstFlow[3], "inputInterface": firstFlow[4], "outputInterface": firstFlow[5], "ipv4SrcAddr": firstFlow[6], \
+                        "ipv4DstAddr": firstFlow[7], "ipProtocol": firstFlow[8], "ipTos": firstFlow[9], "transportSrcPort": firstFlow[10], \
+                            "transportDstPort": firstFlow[11], "flowSampler": firstFlow[12], "ipv4NextHop": firstFlow[13], "ipv4DstMask": firstFlow[14], \
+                                "ipv4SrcMask": firstFlow[15], "tcpFlags": firstFlow[16], "destinationAS": firstFlow[17], "sourceAS": firstFlow[18]})
             else:
                 offset = flow * templSize
                 subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset:74 + offset])
-                createFlow(_es, 'netflow-v9', subseqFlow)
+                createFlow(_es, 'netflow-v9', {"sysUptimeFirst": firstFlow[0], "sysUptimeLast": firstFlow[1], "counterBytes": firstFlow[2], \
+                    "counterPackets": firstFlow[3], "inputInterface": firstFlow[4], "outputInterface": firstFlow[5], "ipv4SrcAddr": firstFlow[6], \
+                        "ipv4DstAddr": firstFlow[7], "ipProtocol": firstFlow[8], "ipTos": firstFlow[9], "transportSrcPort": firstFlow[10], \
+                            "transportDstPort": firstFlow[11], "flowSampler": firstFlow[12], "ipv4NextHop": firstFlow[13], "ipv4DstMask": firstFlow[14], \
+                                "ipv4SrcMask": firstFlow[15], "tcpFlags": firstFlow[16], "destinationAS": firstFlow[17], "sourceAS": firstFlow[18]})
                 #print(subseqFlow)
 
 if __name__ == '__main__':
