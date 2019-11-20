@@ -91,10 +91,10 @@ setBody = {
 }
 
 
-if __name__ == "__main__":
-    createIndex(_es, "netflow-v9", setBody)
+# if __name__ == "__main__":
+#     createIndex(_es, "netflow-v9", setBody)
 
-""" def startCapture(mode):
+def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
         os.mkdir('dumps')
 
@@ -138,4 +138,4 @@ if __name__ == "__main__":
 
 if __name__ == '__main__':
     startCapture(runMode)
-    #s.close() """
+    #s.close()
