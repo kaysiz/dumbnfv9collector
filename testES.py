@@ -18,19 +18,10 @@ def createIndex(esObject, esIndexName='recipes'):
             "number_of_replicas": 0
         },
         "mappings": {
-            "someitems": {
-                "dynamic" : "strict",
-                "properties": {
-                    "title": {
-                        "type": "text"
-                    },
-                    "sub_title": {
-                        "type": "text"
-                    },
-                    "seq_number": {
-                        "type": "integer"
-                    }
-                } 
+            "properies": {
+                "title": {"type": "text"},
+                "sub_title": {"type": "text"},
+                "seq_number": {"type": "integer"}
             }
         }
     }
