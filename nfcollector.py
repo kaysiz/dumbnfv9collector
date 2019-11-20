@@ -127,7 +127,6 @@ createIndex(connectES(), 'netflow-v9', settings)
                 subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset:74 + offset])
                 print(subseqFlow)
  """
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #startCapture(runMode)
     #s.close()
-    
