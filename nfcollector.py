@@ -30,71 +30,71 @@ setBody = {
     "mappings": {
         "properties": {
             "sysUptimeFirst": {
-                "type": "integer"
+                "type": "text"
             },
             "sysUptimeLast": {
-                "type": "integer"
+                "type": "text"
             },
             "counterBytes": {
-                "type": "integer"
+                "type": "text"
             },
             "counterPackets": {
-                "type": "integer"
+                "type": "text"
             },
             "inputInterface": {
-                "type": "integer"
+                "type": "text"
             },
             "outputInterface": {
-                "type": "integer"
+                "type": "text"
             },
             "ipv4SrcAddr": {
-                "type": "integer"
+                "type": "text"
             },
             "ipv4DstAddr": {
-                "type": "integer"
+                "type": "text"
             },
             "ipProtocol": {
-                "type": "integer"
+                "type": "text"
             },
             "ipTos": {
-                "type": "integer"
+                "type": "text"
             },
             "transportSrcPort": {
-                "type": "integer"
+                "type": "text"
             },
             "transportDstPort": {
-                "type": "integer"
+                "type": "text"
             },
             "flowSampler": {
-                "type": "integer"
+                "type": "text"
             },
             "ipv4NextHop": {
-                "type": "integer"
+                "type": "text"
             },
             "ipv4DstMask": {
-                "type": "integer"
+                "type": "text"
             },
             "ipv4SrcMask": {
-                "type": "integer"
+                "type": "text"
             },
             "tcpFlags": {
-                "type": "integer"
+                "type": "text"
             },
             "destinationAS": {
-                "type": "integer"
+                "type": "text"
             },
             "sourceAS": {
-                "type": "integer"
+                "type": "text"
             }
         }
     }
 }
 
 
-# if __name__ == "__main__":
-#     createIndex(_es, "netflow-v9", setBody)
+if __name__ == "__main__":
+    createIndex(_es, "netflow-v9", setBody)
 
-def startCapture(mode):
+""" def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
         os.mkdir('dumps')
 
@@ -138,4 +138,4 @@ def startCapture(mode):
 
 if __name__ == '__main__':
     startCapture(runMode)
-    #s.close()
+    #s.close() """
