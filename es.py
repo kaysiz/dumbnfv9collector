@@ -1,7 +1,7 @@
 from elasticsearch import Elasticsearch
 import logging
 
-_es = Elasticsearch([{"host": "localhost", "port": 9200}])
+_es = Elasticsearch()
 
 def connectES():
     _es = None
@@ -12,11 +12,11 @@ def connectES():
         print('No ping')
     return _es
 
-def createIndex(esObject, indexName, indexSettings):
+def createIndex(esObject, indexName, indexBody):
     created = False
     try:
         if not esObject.indices.exists(indexName):
-            esObject.indices.create(index=indexName, ignore=400, body=indexSettings)
+            esObject.indices.create(index=indexName, ignore=400, body=indexBody)
             print('Index created')
         created = True
     except Exception as ex:
