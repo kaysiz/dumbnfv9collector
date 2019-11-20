@@ -37,5 +37,5 @@ def createIndex(esObject, esIndexName='recipes'):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.ERROR)
-    es = connectES()
+    es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
     createIndex(es)
