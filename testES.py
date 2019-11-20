@@ -38,4 +38,4 @@ def createIndex(esObject, indexName='recipes'):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.ERROR)
-    createIndex(connectES())
+    createIndex(connectES(),'flows')
