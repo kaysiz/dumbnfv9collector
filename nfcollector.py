@@ -2,115 +2,13 @@ import os, socket, struct, sys
 from datetime import date
 from time import time
 import config as cfg
-from elasticsearch import Elasticsearch
+from es import createIndex, connectES
 
 
 
 
-es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
 
-def createIndex(es_object, indexName='netflow-v9'):
-    created = False
-    es_index_settings = {
-    "settings" : {
-        "number_of_shards" : 1,
-        "number_of_replicas" : 0
-    },
-    "mappings" : {
-        "flows" : {
-            "dynamic" : "strict",
-            "properties" : {
-                "version": {
-                    "type" : "integer"
-                },
-                "count" : {
-                    "type" : "integer"
-                },
-                "sysUpTime" : {
-                    "type" : "integer"
-                },
-                "unixSec" : {
-                    "type" : "integer"
-                },
-                "sequenceNumber" : {
-                    "type" : "integer"
-                },
-                "sourceId" : {
-                    "type" : "integer"
-                },
-                "timeStampFirst" : {
-                    "type" : "integer"
-                },
-                "timeStampLast" : {
-                    "type" : "integer"
-                },
-                "counterBytes" : {
-                    "type" : "integer"
-                },
-                "counterPackets" : {
-                    "type" : "integer"
-                },
-                "interfaceInput" : {
-                    "type" : "integer"
-                },
-                "interfaceOutput" : {
-                    "type" : "integer"    
-                },
-                "ipv4SrcAddr" : {
-                    "type" : "integer"
-                },
-                "ipv4DstAddr" : {
-                    "type" : "integer"
-                },
-                "ipProtocol" : {
-                    "type" : "integer"
-                },
-                "ipTos" : {
-                    "type" : "integer"
-                },
-                "transportSrcPort" : {
-                    "type" : "integer"
-                },
-                "transportDstPort" : {
-                    "type" : "integer"
-                },
-                "flowSampler" : {
-                    "type" : "integer"
-                },
-                "nextHopIpv4Addr" : {
-                    "type" : "integer"
-                },
-                "ipv4DstMask" : {
-                    "type" : "integer"
-                },
-                "ipv4SrcMask" : {
-                    "type" : "integer"
-                },
-                "tcpFlag" : {
-                    "type" : "integer"
-                },
-                "destinationAS" : {
-                    "type" : "integer"
-                },
-                "sourceAS" : {
-                    "type" : "integer"
-                    }
-                }
-            }
-        }
-    }
-try:
-    if not es.indicies.exists('netflow-v9'):
-        es.indicies.create(index='netflow-v9', ignore=400, body=es_index_settings)
-        print('Index created')
-        created = True
-except Exception as ex:
-    print(str(ex))
-finally:
-    return created
-
-
-""" runMode = cfg.mode
+runMode = cfg.mode
 ipAddress = cfg.ip_address
 port = cfg.port
 templSize = cfg.template_size_in_bytes
@@ -124,7 +22,80 @@ s.bind((ipAddress, port))
 # Date stamps
 td = str(date.today())
 
-def startCapture(mode):
+settings = {
+    "settings" : {
+        "number_of_shards" : 1,
+        "number_of_replicas": 0
+    },
+    "mappings": {
+        "flows": {
+            "dynamic": "strict",
+            "properties": {
+                "sysUptimeFirst": {
+                    "type": "integer"
+                },
+                "sysUptimeLast": {
+                    "type": "integer"
+                },
+                "counterBytes": {
+                    "type": "integer"
+                },
+                "counterPackets": {
+                    "type": "integer"
+                },
+                "inputInterface": {
+                    "type": "integer"
+                },
+                "outputInterface": {
+                    "type": "integer"
+                },
+                "ipv4SrcAddr": {
+                    "type": "integer"
+                },
+                "ipv4DstAddr": {
+                    "type": "integer"
+                },
+                "ipProtocol": {
+                    "type": "integer"
+                },
+                "ipTos": {
+                    "type": "integer"
+                },
+                "transportSrcPort": {
+                    "type": "integer"
+                },
+                "transportDstPort": {
+                    "type": "integer"
+                },
+                "flowSampler": {
+                    "type": "integer"
+                },
+                "ipv4NextHop": {
+                    "type": "integer"
+                },
+                "ipv4DstMask": {
+                    "type": "integer"
+                },
+                "ipv4SrcMask": {
+                    "type": "integer"
+                },
+                "tcpFlags": {
+                    "type": "integer"
+                },
+                "destinationAS": {
+                    "type": "integer"
+                },
+                "sourceAS": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
+
+createIndex(connectES(), 'netflow-v9', settings)
+
+""" def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
         os.mkdir('dumps')
 
@@ -155,8 +126,8 @@ def startCapture(mode):
                 offset = flow * templSize
                 subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset:74 + offset])
                 print(subseqFlow)
-
-if __name__ == '__main__':
-    startCapture(runMode)
-    s.close()
  """
+if __name__ == '__main__':
+    #startCapture(runMode)
+    #s.close()
+    

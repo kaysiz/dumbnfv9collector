@@ -11,24 +11,11 @@ def connectES():
         print('No ping')
     return _es
 
-def createIndex(esObject, indexName='recipes'):
+def createIndex(esObject, indexName, indexSettings):
     created = False
-    settings = {
-        "settings": {
-            "number_of_shards": 1,
-            "number_of_replicas": 0
-        },
-        "mappings": {
-            "properties": {
-                "title": {"type": "text"},
-                "sub_title": {"type": "text"},
-                "seq_number": {"type": "integer"}
-            }
-        }
-    }
     try:
         if not esObject.indices.exists(indexName):
-            esObject.indices.create(index=indexName, ignore=400, body=settings)
+            esObject.indices.create(index=indexName, ignore=400, body=indexSettings)
             print('Index created')
         created = True
     except Exception as ex:
@@ -38,4 +25,3 @@ def createIndex(esObject, indexName='recipes'):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.ERROR)
-    createIndex(connectES(),'flows')
