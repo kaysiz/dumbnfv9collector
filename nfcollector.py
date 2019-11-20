@@ -130,4 +130,4 @@ def startCapture(mode):
 
 if __name__ == '__main__':
     startCapture(runMode)
-    s.close()
+    #s.close()
