@@ -1,7 +1,7 @@
 from elasticsearch import Elasticsearch
 import logging
 
-def createIndex(esObject, indexName='recipes'):
+""" def createIndex(esObject, indexName='recipes'):
     created = False
     settings = {
         "settings": {
@@ -24,11 +24,22 @@ def createIndex(esObject, indexName='recipes'):
     except Exception as ex:
         print(str(ex))
     finally:
-        return created
+        return created """
+
+settings = {
+    "settings": {
+        "number_of_shards": 1,
+        "number_od_replicas": 0
+    },
+    "mappings": {
+        "properties": {
+            "title": {"type": "text"},
+            "sub_title": {"type": "text"},
+            "seq_number": {"type": "integer"}
+        }
+    }
+}
 
 
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
-createIndex(es)
-
-if __name__ == "__main__":
-    logging.basicConfig(level=logging.ERROR)
+es.indices.create(index='recipes', ignore=400, body=settings)
