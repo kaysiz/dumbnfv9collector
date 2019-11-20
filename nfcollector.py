@@ -22,7 +22,7 @@ s.bind((ipAddress, port))
 # Date stamps
 td = str(date.today())
 
-indexBody = {
+setBody = {
     "settings" : {
         "number_of_shards" : 1,
         "number_of_replicas": 0
@@ -93,10 +93,9 @@ indexBody = {
     }
 }
 
-ps = None
 
 if __name__ == "__main__":
-    createIndex(ps, "netflow-v9", indexBody)
+    createIndex(_es, "netflow-v9", setBody)
 
 """ def startCapture(mode):
     if not os.path.exists('dumps') and mode == 'raw':
