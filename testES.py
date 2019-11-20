@@ -28,7 +28,7 @@ def createIndex(esObject, indexName='recipes'):
     }
     try:
         if not esObject.indices.exists(indexName):
-            esObject.indices.create(index=indexName, body=settings)
+            esObject.indices.create(index=indexName, ignore=400, body=settings)
             print('Index created')
         created = True
     except Exception as ex:
