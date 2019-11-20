@@ -121,11 +121,11 @@ def startCapture(mode):
             if flow == 0:
                 firstFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24:74])
                 #print(firstFlow)
-                createFlow(_es, firstFlow)
+                createFlow(_es, 'netflow-v9', firstFlow)
             else:
                 offset = flow * templSize
                 subseqFlow = struct.unpack('!IIIIIIIIBBHHBIBBBHH', data[24 + offset:74 + offset])
-                createFlow(_es, subseqFlow)
+                createFlow(_es, 'netflow-v9', subseqFlow)
                 #print(subseqFlow)
 
 if __name__ == '__main__':
