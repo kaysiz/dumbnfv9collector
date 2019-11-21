@@ -1,5 +1,5 @@
 # Set collector mode `raw` or `unpack`
-mode = 'unpack'
+mode = 'raw'
 
 # LIsten IP address.
 ip_address = '127.0.0.1'
